@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Customer Churn Prediction</h1>
+
+    <form action="/predict" method="POST">
+
+        <label>Gender</label>
+        <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+        </select>
+
+        <label>Senior Citizen</label>
+        <select name="senior" required>
+            <option value="">Select Option</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label>Partner</label>
+        <select name="partner" required>
+            <option value="">Select Option</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label>Dependents</label>
+        <select name="dependents" required>
+            <option value="">Select Option</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label>Tenure (Months)</label>
+        <input type="number" name="tenure" min="0" required>
+
+        <label>Internet Service</label>
+        <select name="internet" required>
+            <option value="">Select Internet Service</option>
+            <option value="0">DSL</option>
+            <option value="1">Fiber Optic</option>
+            <option value="2">No Internet Service</option>
+        </select>
+
+        <label>Contract</label>
+        <select name="contract" required>
+            <option value="">Select Contract</option>
+            <option value="0">Month-to-Month</option>
+            <option value="1">One Year</option>
+            <option value="2">Two Year</option>
+        </select>
+
+        <label>Monthly Charges</label>
+        <input type="number" step="0.01" min="0" name="monthly" required>
+
+        <label>Total Charges</label>
+        <input type="number" step="0.01" min="0" name="total" required>
+
+        <button type="submit">Predict Churn</button>
+
+    </form>
+
+   {% if prediction %}
+    <div class="result">
+        {{ prediction }}<br>
+        Churn Probability: {{ probability }}%
+    </div>
+{% endif %}
+</div>
+
+</body>
+</html>
